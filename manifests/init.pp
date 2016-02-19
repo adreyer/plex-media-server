@@ -20,7 +20,8 @@ class plexmediaserver (
   $plex_media_server_max_open_files          =
     $plexmediaserver::params::plex_media_server_max_open_files,
   $plex_media_server_tmpdir                  =
-    $plexmediaserver::params::plex_media_server_tmpdir
+    $plexmediaserver::params::plex_media_server_tmpdir,
+  $manage_service                            = true,
 ) inherits plexmediaserver::params {
   case $::operatingsystem {
     'Darwin': {
@@ -66,9 +67,11 @@ class plexmediaserver (
     undef   => undef,
     default => File['plexconfig'],
   }
-  service { 'plexmediaserver':
-    ensure    => running,
-    enable    => true,
-    subscribe => $subscription_file,
+  if ($manage_service) {
+    service { 'plexmediaserver':
+      ensure    => running,
+      enable    => true,
+      subscribe => $subscription_file,
+    }
   }
 }

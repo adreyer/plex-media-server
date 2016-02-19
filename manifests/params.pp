@@ -1,27 +1,29 @@
 class plexmediaserver::params {
+  $plex_version = '0.9.15.3.1674-f46e7e6'
+
   # Get download URL
   case $::operatingsystem {
     'Darwin': {
-      $plex_url      = 'https://downloads.plex.tv/plex-media-server/0.9.12.19.1537-f38ac80'
-      $plex_pkg      = 'PlexMediaServer-0.9.12.19.1537-f38ac80-OSX.zip'
+      $plex_url      = "https://downloads.plex.tv/plex-media-server/${plex_version}"
+      $plex_pkg      = "PlexMediaServer-${plex_version}-OSX.zip"
       $plex_provider = 'pkgdmg'
     }
     'Ubuntu': {
-      $plex_url         = 'https://downloads.plex.tv/plex-media-server/0.9.12.19.1537-f38ac80'
-      $plex_pkg         = "plexmediaserver_0.9.12.19.1537-f38ac80_${::architecture}.deb"
+      $plex_url         = "https://downloads.plex.tv/plex-media-server/${plex_version}"
+      $plex_pkg         = "plexmediaserver_${plex_version}_${::architecture}.deb"
       $plex_provider    = 'dpkg'
       $plex_ubuntu_deps = [ 'libavahi-core7', 'libdaemon0', 'avahi-daemon' ]
       $plex_config      = '/etc/default/plexmediaserver'
     }
     'Fedora': {
-      $plex_url      = 'https://downloads.plex.tv/plex-media-server/0.9.12.19.1537-f38ac80'
-      $plex_pkg      = "plexmediaserver-0.9.12.19.1537-f38ac80.${::architecture}.rpm"
+      $plex_url      = "https://downloads.plex.tv/plex-media-server/${plex_version}"
+      $plex_pkg      = "plexmediaserver-${plex_version}.${::architecture}.rpm"
       $plex_provider = 'rpm'
       $plex_config   = '/etc/sysconfig/PlexMediaServer'
     }
     'CentOS': {
-      $plex_url      = 'https://downloads.plex.tv/plex-media-server/0.9.12.19.1537-f38ac80'
-      $plex_pkg      = "plexmediaserver-0.9.12.19.1537-f38ac80.${::architecture}.rpm"
+      $plex_url      = "https://downloads.plex.tv/plex-media-server/${plex_version}"
+      $plex_pkg      = "plexmediaserver-${plex_version}.${::architecture}.rpm"
       $plex_provider = 'rpm'
       $plex_config   = '/etc/sysconfig/PlexMediaServer'
     }

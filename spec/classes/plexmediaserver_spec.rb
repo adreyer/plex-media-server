@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe 'plexmediaserver', :type => :class do
+  before(:each) { @plex_version = '0.9.15.3.1674-f46e7e6' }
+
   context "on all operating systems" do
     let :facts do
     {
@@ -47,7 +49,7 @@ describe 'plexmediaserver', :type => :class do
       :architecture    => 'i386',
     }
     end
-    it { should contain_staging__file('plexmediaserver-0.9.12.19.1537-f38ac80.i386.rpm') }
+    it { should contain_staging__file("plexmediaserver-#{@plex_version}.i386.rpm") }
   end
 
   context "on a CentOS 64-bit system" do
@@ -58,7 +60,7 @@ describe 'plexmediaserver', :type => :class do
       :architecture    => 'x86_64',
     }
     end
-    it { should contain_staging__file('plexmediaserver-0.9.12.19.1537-f38ac80.x86_64.rpm') }
+    it { should contain_staging__file("plexmediaserver-#{@plex_version}.x86_64.rpm") }
   end
 
   context "on a Darwin system" do
@@ -68,7 +70,7 @@ describe 'plexmediaserver', :type => :class do
       :operatingsystem => 'Darwin',
     }
     end
-    it { should contain_staging__deploy('PlexMediaServer-0.9.12.19.1537-f38ac80-OSX.zip') }
+    it { should contain_staging__deploy("PlexMediaServer-#{@plex_version}-OSX.zip") }
   end
 
   context "on a Ubuntu 32-bit system" do
@@ -78,7 +80,7 @@ describe 'plexmediaserver', :type => :class do
       :architecture    => 'i386',
     }
     end
-    it { should contain_staging__file('plexmediaserver_0.9.12.19.1537-f38ac80_i386.deb') }
+    it { should contain_staging__file("plexmediaserver_#{@plex_version}_i386.deb") }
   end
 
   context "on a Ubuntu 64-bit system" do
@@ -89,7 +91,7 @@ describe 'plexmediaserver', :type => :class do
       :architecture    => 'amd64',
     }
     end
-    it { should contain_staging__file('plexmediaserver_0.9.12.19.1537-f38ac80_amd64.deb') }
+    it { should contain_staging__file("plexmediaserver_#{@plex_version}_amd64.deb") }
   end
 
 end
